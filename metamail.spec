@@ -1,7 +1,11 @@
+%define name metamail
+%define version 2.7
+%define release %mkrel 13
+
 Summary:	A program for handling multimedia mail using the mailcap file
-Name:		metamail
-Version:	2.7
-Release:	12mdk
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
 License:	Distributable
 Group:		Networking/Mail
 Source0:	ftp://thumper.bellcore.com/pub/nsp/metamail/mm2.7.tar.bz2
@@ -24,7 +28,6 @@ Patch15:	mm2.7-gcc4.patch
 Requires:	mktemp sharutils csh
 BuildRequires:	termcap-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	XFree86
 
 %description
 Metamail is a system for handling multimedia mail, using the mailcap
@@ -60,14 +63,9 @@ cd src
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/{usr/bin,usr/lib/metamail/fonts,usr/man/man1}
 mkdir -p $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/metamail/fonts,%{_mandir}/man1}
 cd src
 make INSTROOT=$RPM_BUILD_ROOT%{_prefix} install-all INSTALL="install -c" MAN1DIR=$RPM_BUILD_ROOT/%{_mandir}/man1 MAN4DIR=$RPM_BUILD_ROOT/%{_mandir}/man4
-
-install -m644 fonts/*.pcf $RPM_BUILD_ROOT%{_libdir}/metamail/fonts
-install -m644 fonts/fonts.alias $RPM_BUILD_ROOT%{_libdir}/metamail/fonts
-mkfontdir $RPM_BUILD_ROOT%{_libdir}/metamail/fonts
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -75,7 +73,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %{_bindir}/*
-%{_libdir}/metamail
 %{_mandir}/man1/*
 #%{_mandir}/man4/*
 
