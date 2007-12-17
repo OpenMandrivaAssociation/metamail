@@ -27,7 +27,6 @@ Patch15:	mm2.7-gcc4.patch
 
 Requires:	mktemp sharutils csh
 BuildRequires:	termcap-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Metamail is a system for handling multimedia mail, using the mailcap
