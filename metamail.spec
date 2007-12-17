@@ -1,12 +1,8 @@
-%define name metamail
-%define version 2.7
-%define release %mkrel 13
-
 Summary:	A program for handling multimedia mail using the mailcap file
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-License:	Distributable
+Name:		metamail
+Version:	2.7
+Release:	%mkrel 14
+License:	BSD-like
 Group:		Networking/Mail
 Source0:	ftp://thumper.bellcore.com/pub/nsp/metamail/mm2.7.tar.bz2
 Patch0:		mm-2.7-make.patch
@@ -24,9 +20,10 @@ Patch12:	metamail-2.7-vulns.patch
 Patch13:	mm2.7-gcc3.4-fix.patch
 Patch14:	metamail-2.7-boundary_crash.patch
 Patch15:	mm2.7-gcc4.patch
-
-Requires:	mktemp sharutils csh
 BuildRequires:	termcap-devel
+Requires:	mktemp
+Requires:	sharutils
+Requires:	csh
 
 %description
 Metamail is a system for handling multimedia mail, using the mailcap
@@ -43,12 +40,12 @@ mail programs and some other programs, using the mailcap file.
 %patch0 -p1 -b .make
 %patch1 -p1 -b .font
 %patch2 -p1 -b .glibc
-%patch3 -p1 -b .csh
-%patch4 -p1 -b .tmpfiles
-%patch5 -p1 -b .quote
-%patch7 -p1 -b .sigh
-%patch8 -p1 -b .arghhh
-%patch9 -p1 -b .sml
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
 %patch10 -p1
 %patch11 -p1 -b .linux
 %patch12 -p0 -b .manyvulns
@@ -58,16 +55,16 @@ mail programs and some other programs, using the mailcap file.
 
 %build
 cd src
-%make RPM_OPT_FLAGS="$RPM_OPT_FLAGS" basics
+%make RPM_OPT_FLAGS="%{optflags}" basics
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/metamail/fonts,%{_mandir}/man1}
+rm -rf %{buildroot}
+mkdir -p %{buildroot}{%{_bindir},%{_libdir}/metamail/fonts,%{_mandir}/man1}
 cd src
-make INSTROOT=$RPM_BUILD_ROOT%{_prefix} install-all INSTALL="install -c" MAN1DIR=$RPM_BUILD_ROOT/%{_mandir}/man1 MAN4DIR=$RPM_BUILD_ROOT/%{_mandir}/man4
+make INSTROOT=%{buildroot}%{_prefix} install-all INSTALL="install -c" MAN1DIR=%{buildroot}/%{_mandir}/man1 MAN4DIR=%{buildroot}/%{_mandir}/man4
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
