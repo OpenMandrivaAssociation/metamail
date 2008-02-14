@@ -4,6 +4,7 @@ Version:	2.7
 Release:	%mkrel 14
 License:	BSD-like
 Group:		Networking/Mail
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0:	ftp://thumper.bellcore.com/pub/nsp/metamail/mm2.7.tar.bz2
 Patch0:		mm-2.7-make.patch
 Patch1:		mm-2.7-fonts.patch
