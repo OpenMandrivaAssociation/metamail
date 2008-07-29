@@ -1,7 +1,7 @@
 Summary:	A program for handling multimedia mail using the mailcap file
 Name:		metamail
 Version:	2.7
-Release:	%mkrel 14
+Release:	%mkrel 16
 License:	BSD-like
 Group:		Networking/Mail
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
