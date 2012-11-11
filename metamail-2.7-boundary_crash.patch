@@ -1,0 +1,23 @@
+Based on the patch from http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=352482,
+adjusted to apply correctly.
+
+--- mm2.7/src/metamail/metamail.c	2006-02-15 16:15:08.000000000 -0500
++++ mm2.7/src/metamail/metamail.c	2006-02-15 16:19:42.000000000 -0500
+@@ -447,7 +447,7 @@
+         }
+         LineBuf = malloc(LINE_BUF_SIZE);
+         if (!LineBuf) ExitWithError(nomem);
+-        sprintf(LineBuf, "--%s", boundary);
++        snprintf(LineBuf, LINE_BUF_SIZE, "--%s", boundary);
+         strcpy(boundary, LineBuf);
+         boundarylen = strlen(boundary);
+         if (BoundaryCt >= BoundaryAlloc) {
+@@ -2118,7 +2118,7 @@
+                         if (boundary[0] == '"') {
+                             boundary=UnquoteString(boundary);
+                         }
+-                        sprintf(LineBuf, "--%s", boundary);
++                        snprintf(LineBuf, LINE_BUF_SIZE, "--%s", boundary);
+                         strcpy(boundary, LineBuf);
+                         boundarylen = strlen(boundary);
+                         if (BoundaryCt >= BoundaryAlloc) {

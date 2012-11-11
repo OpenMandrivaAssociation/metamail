@@ -1,0 +1,23 @@
+--- mm2.7/src/metamail/metamail.c.gcc4	2006-02-21 14:15:53.684861208 -0700
++++ mm2.7/src/metamail/metamail.c	2006-02-21 14:16:45.300139131 -0700
+@@ -84,7 +84,8 @@ extern char *MkRmScript();
+ #define MAX_FILE_NAME_SIZE 256
+ #define WRITE_BINARY	"w"
+ #else /* AMIGA */
+-extern char **environ, *gets();
++extern char **environ;
++//*gets();
+ #define CATCOMMAND  "cat"
+ #define CATTEMPLATE "cat %s"
+ #define METAMAIL    "metamail"
+--- mm2.7/src/richmail/richtext.c.gcc4	2006-02-21 14:17:03.921251627 -0700
++++ mm2.7/src/richmail/richtext.c	2006-02-21 14:17:15.734780293 -0700
+@@ -989,7 +989,7 @@ FILE *fp;
+     while(*s) (*RichtextPutc)((int)(*s++),fp);
+ }
+ 
+-static lc2strcmp(s1, s2)
++lc2strcmp(s1, s2)
+ char *s1, *s2;
+ {
+     if (!s1 || !s2) return (-1);
