@@ -21,6 +21,7 @@ Patch12:	metamail-2.7-vulns.patch
 Patch13:	mm2.7-gcc3.4-fix.patch
 Patch14:	metamail-2.7-boundary_crash.patch
 Patch15:	mm2.7-gcc4.patch
+BuildRequires:	make
 BuildRequires:	termcap-devel
 Requires:	mktemp
 Requires:	sharutils
